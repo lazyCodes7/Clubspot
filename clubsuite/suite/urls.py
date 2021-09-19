@@ -13,7 +13,7 @@ from . import views
 
 urlpatterns = [
     url(r'^about', views.About.as_view(), name='about'),
-    url(r'^dashboard$', views.Dashboard.as_view(), name='dashboard'),
+    url(r'^$', views.Dashboard.as_view(), name='dashboard'),
     url(r'^club/create$', views.ClubCreate.as_view(), name='club_create'),
     url(r'^club/search$', views.ClubSearch.as_view(), name='club_search'),
     url(r'^club/(?P<club_id>[0-9]+)/event_create$', views.EventCreate.as_view(), name='event_create'),
@@ -40,8 +40,8 @@ urlpatterns = [
     #user logout
     # user registration
     url('^', include('django.contrib.auth.urls')),
-    url('^$', auth.login, name='login'),
-    url('^loggedout/$', auth.logout, {'template_name': 'registration/user_logged_out.html'}, name='loggedout'),
+    # url('^$', auth.login, name='login'),
+    url('^loggedout/$', auth.logout, name='loggedout'),
     #url('^$', views.view_index, name='login'),
 
     url(r'^register$', views.RegistrationView.as_view(), name='register'),

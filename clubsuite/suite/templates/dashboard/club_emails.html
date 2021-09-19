@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% load guardian_tags %}
-{% load staticfiles %}
+{% load static %}
 
 {% block body_block %}
 {% get_obj_perms request.user for club as "club_perms" %}

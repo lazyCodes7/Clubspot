@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <nav class="nav">
   <div class="nav-left">
     <a href={% url 'suite:dashboard' %} class="nav-item">
@@ -40,7 +40,7 @@
 
     <a class="nav-item" href={% url 'suite:dashboard' %}>
         {% if user.is_authenticated %}
-        <p>| &nbsp;&nbsp;&nbsp; Welcome, {{ user.get_short_name }} </p> <a class="button is-warning-navbar" href="{% url 'suite:loggedout' %}">Logout</a>
+        <p>| &nbsp;&nbsp;&nbsp; Welcome, {{ user.get_short_name }} </p> <a class="button is-warning-navbar" href="{% url 'suite:loggedout' %}?next=/">Logout</a>
         {% else %}
         <p>| &nbsp;&nbsp;&nbsp; Welcome, Guest </p><a class="button is-warning-navbar" href="{% url 'suite:login' %}">Log In</a><a class="button is-info-navbar" href="{% url 'suite:register' %}">Register</a>
         {% endif %}
