@@ -29,7 +29,7 @@ class Activity(View, LoginRequiredMixin):
 
         template_name = 'suite/club_activity.html'
         club:Club = get_object_or_404(Club, pk=club_id)
-        keyword= club.club_description + ' activities'
+        keyword= club.club_name + ' activities'
         html_keyword= urllib.parse.quote_plus(keyword)
         print(html_keyword)
         number_of_result=10
