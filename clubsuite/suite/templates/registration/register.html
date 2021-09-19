@@ -13,8 +13,8 @@
                     <div class="signup-card card-block auth-body mr-auto ml-auto">
                         <form class="md-float-material" method="post" action="{% url 'suite:register' %}">
                             {% csrf_token %}
-                            <div class="text-center">
-                                <img src="{% static 'images/auth/logo-dark.png' %}" alt="logo.png">
+                            <div class="text-center" style="color: #222; font-size: 36px; text-transform: uppercase">
+                                <span style="font-weight: 600">Club</span>Spot
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -107,10 +107,6 @@
                                     <div class="col-md-10">
                                         <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
                                         <p class="text-inverse text-left"><b>Cypher - HackMIT</b></p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="{% static 'images/auth/Logo-small-bottom.png' %}"
-                                             alt="small-logo.png">
                                     </div>
                                 </div>
                             </div>
