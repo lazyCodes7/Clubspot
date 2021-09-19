@@ -1,0 +1,81 @@
+.button.is-info-navbar {
+    background-color: #3273dc;
+    border-color: transparent;
+    color: #fff;
+    margin-top: 2mm;
+}
+
+.button.is-warning-navbar {
+    background-color: #ffdd57;
+    border-color: transparent;
+    color: rgba(0,0,0,.7);
+    margin-top: 2mm;
+}
+
+/* Required for sticky footer */
+.content {
+    flex: 1;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #d9d9d9 !important;
+}
+
+.footer {
+    background-color: transparent !important;
+    background-image: url("../media/CSE110Footer.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    height: 300px;
+}
+
+.section {
+    background-color: transparent !important;
+}
+
+.loginBody {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../media/CSE110ClubsLogIn.jpg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+}
+.loginFooter {
+    visibility: hidden;
+    display: none;
+}
+
+.box input {
+    border-radius: 6px;
+    padding: 5px;
+    width: 100%;
+}
+
+.box .title {
+    text-align: center;
+}
+
+.box .button {
+    text-align: center;
+}
+
+.loginPanda {
+    position: relative;
+    left: 225px;
+    top: 75px;
+    width: 55%;
+}
+
+.nav-right {
+    padding: 0 10.5px 0 0;
+}

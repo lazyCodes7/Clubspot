@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load mathfilters %}
+
+{% block body_block %}
+<section class='section'>
+<div class='container'>
+  <h1>Edit {{ club.club_name }}'s Details</h1>
+
+  {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+      <div class="notification is-danger">
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+      </div>
+    {% else %}
+      <div class="notification is-success">
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+      </div>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <form method='POST' action="{% url 'suite:club_edit' club.id %}" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <div class="control is-horizontal">
+            <div class="control-label">
+                 <label class="label" for="id_event_name">Club's Name</label>
+            </div>
+            <p class="control is-horizontal"> {{form.club_name | add_class:'input is-fullwidth' }}</p>
+       </div>
+
+     <div class="control is-horizontal">
+            <div class="control-label">
+                 <label class="label" for="id_event_name">Club's Description</label>
+            </div>
+            <p class="control"> 
+            {% render_field form.club_description class="textarea is-fullwidth" %}</p>
+            
+     </div>
+     <div class="control-label">
+                 {% render_field form.image %}
+     </div>
+
+
+     
+      <p class="control">
+           <button class="button is-primary" type="submit" name="details">Submit</button>
+          <input type='hidden' name='edit'>
+      </p>
+  </form>
+</div>
+</section>
+
+{% endblock body_block %}
+

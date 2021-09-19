@@ -1,0 +1,52 @@
+{% extends 'base_login.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+
+
+<section class="">
+
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <h1 class="title">
+            Sign Up
+          </h1>
+          <div class='box'>
+            <p>{{ form.non_field_errors }}</p>
+            <form method='POST'>
+              {% csrf_token %}
+              
+              <label class='label'>{{ form.first_name.label_tag }}</label>
+              <p class='control'>{{ form.first_name }}</p>
+              <label class='label'>{{ form.last_name.label_tag }}</label>
+              <p class='control'>{{ form.last_name }}</p>
+              
+              <p class='label'>{{ form.email.errors }}</p>
+              <label class='label'>{{ form.email.label_tag }}</label>
+              <p class='control'>{{ form.email }}</p>
+
+              <p class='label'>{{form.password1.errors }}</p>
+              <label class='label'>{{ form.password1.label_tag }}</label>
+              <p class='control'>{{ form.password1 }}</p>
+
+              <p class='label'>{{form.password2.errors }}</p>
+              <label class='label'>{{ form.password2.label_tag }}</label>
+              <p class='control'>{{ form.password2 }}</p>
+
+              <hr>
+
+              <p class='control'>
+                <button class='button' type='submit'>Register</button>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock body_block %}

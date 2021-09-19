@@ -1,0 +1,22 @@
+{% extends 'base_login.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <img src="{% static 'media/CSElogo.png' %}" class="loginPanda">
+          <h1 class="title">
+            Your account was successfully created!
+          </h1>
+              <a href={% url 'suite:dashboard' %} class="button is-info">
+                Login
+            </a> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock body_block %}

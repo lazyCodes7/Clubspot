@@ -1,0 +1,42 @@
+{% extends 'base_login.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+
+<section class="">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <img src="{% static 'media/CSElogo.png' %}" class="loginPanda">
+          <div class="box">
+              <img src="{% static 'media/clubsuite.png' %}" >
+          <form action="{% url 'suite:login' %}" method="post" accept-charset="utf-8">
+            {% if form.errors %}
+            {{ form.non_field_errors }}
+            {% endif %}
+            {% csrf_token %}
+            {% for field in form %}
+            <label class='label'>{{ field.label }}</label>
+            {% if field.errors %}
+              <p class='label'>{{ field.errors }}</p>
+            {% endif %}
+            <p class='control'>{{ field }}</p>
+          {% endfor %}
+          {#<input type="hidden" name="next" value="{{ next }}" />#}
+          <input type="hidden" name="next" value="{% url 'suite:dashboard' %}" />
+          <input class="button small control is-primary" type="submit" value="Login" />
+        </form>
+      </div>
+      <p class="has-text-centered">
+        <a href="{% url 'suite:register' %}">Register an Account</a>
+        |
+        <a href="{% url 'suite:about' %}">About</a>
+      </p>
+    </div>
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock body_block %}

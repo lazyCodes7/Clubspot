@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block body_block %}
+<section class='section'>
+  <div class='container'>
+
+    <div class='heading'>
+      <h1 class='title'>Create a Club</h1>
+    </div>
+
+    <form action="{% url 'suite:club_create' %}" method="post" enctype='multipart/form-data'>
+      {% csrf_token %}
+      <div class="control is-horizontal">
+           <div class="control-label">
+                <label class="label" for="id_club_name">Name</label>
+           </div>
+           <p class="control">
+                {{ form.club_name |add_class:'input is-fullwidth' }}
+           </p>
+      </div>
+      <div class="control is-horizontal">
+           <div class="control-label">
+                <label class="label" for="id_club_description">Description</label>
+           </div>
+           <p class="control">
+                {{ form.club_description |add_class:'textarea is-fullwidth' }}
+           </p>
+      </div>
+
+      <div class="control is-horizontal">
+           <div class="control-label">
+                <label class="label" for="id_image">Cover Photo </label>
+                <h6 class="subtitle is-6"> (4:1 aspect ratio) </h6>
+           </div>
+           <p class="control">
+                {{ form.image }}
+                <!--{% render_field form.image class="button is-primary"%}-->
+                <!--
+                No aesthetic improvement either :/
+                <img src="{{form.image.url}}"/>
+               -->
+           </p>
+      </div>
+
+        <div class="control">
+           <p class="control" style="text-align: right">
+               <button class="button is-primary" type="submit" name="details">Submit</button>
+           </p>
+      </div>
+    </form>
+
+  </div>
+</section>
+{% endblock body_block %}
