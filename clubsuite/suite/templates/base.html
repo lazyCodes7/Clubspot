@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="description" content="A site to make managing your club easier.">
@@ -9,13 +9,70 @@
 
     {% include 'base_css.html' %}
     {% include 'base_js.html' %}
-  </head>
+</head>
 
-  <body>
-  {% include 'base_header.html' %}
-  <div class="content">
-      {% block body_block %}{% endblock %}
-  </div>
-  {% include 'base_footer.html' %}
-  </body>
+<body>
+<div class="theme-loader">
+    <div class="ball-scale">
+        <div class="contain">
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        {% include 'base_header.html' %}
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+                {% include 'base_sidebar.html' %}
+
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <div class="main-body">
+                            <div class="page-wrapper">
+
+                                <div class="page-body">
+                                    {% block body_block %}{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base_footer.html' %}
+</body>
 </html>

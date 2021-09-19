@@ -1,63 +1,56 @@
 {% load static %}
-<nav class="nav">
-  <div class="nav-left">
-    <a href={% url 'suite:dashboard' %} class="nav-item">
-      <img src="{% static 'media/CSElogo.png' %}" alt="Club Suite Logo">
-    </a>
-  </div>
 
-  <div class="nav-center">
+<nav class="navbar header-navbar pcoded-header">
+    <div class="navbar-wrapper">
 
-  </div>
+        <div class="navbar-logo">
+            <a class="mobile-menu" id="mobile-collapse" href="#!">
+                <i class="ti-menu"></i>
+            </a>
+            <a class="mobile-search morphsearch-search" href="#">
+                <i class="ti-search"></i>
+            </a>
+            <a href="index.html">
+                <img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Theme-Logo"/>
+            </a>
+            <a class="mobile-options">
+                <i class="ti-more"></i>
+            </a>
+        </div>
 
-  <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-  <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-  <span class="nav-toggle" id="nav-toggle-main">
-    <span></span>
-    <span></span>
-    <span></span>
-    &nbsp;
-  </span>
+        <div class="navbar-container container-fluid">
+            <ul class="nav-left">
+                <li>
+                    <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                </li>
 
-  <!-- This "nav-menu" is hidden on mobile -->
-  <!-- Add the modifier "is-active" to display it on mobile -->
-  <div class="nav-right nav-menu" id="nav-menu-main">
-    <a href={% url 'suite:dashboard' %} class="nav-item">
-      Home
-    </a>
-    <a class="nav-item" href={% url 'suite:club_search' %}>
-      Club Search
-    </a>
-    <a class="nav-item" href={% url 'suite:club_create' %}>
-      Create Club
-    </a>
-    <a class="nav-item" href="{% url 'suite:club_manage' %}">
-      Manage Clubs
-    </a>
-    <a class="nav-item" href={% url 'suite:edit_profile' %}>
-      Account
-    </a>
-
-    <a class="nav-item" href={% url 'suite:dashboard' %}>
-        {% if user.is_authenticated %}
-        <p>| &nbsp;&nbsp;&nbsp; Welcome, {{ user.get_short_name }} </p> <a class="button is-warning-navbar" href="{% url 'suite:loggedout' %}?next=/">Logout</a>
-        {% else %}
-        <p>| &nbsp;&nbsp;&nbsp; Welcome, Guest </p><a class="button is-warning-navbar" href="{% url 'suite:login' %}">Log In</a><a class="button is-info-navbar" href="{% url 'suite:register' %}">Register</a>
-        {% endif %}
-    </a>
-  </div>
+                <li>
+                    <a href="#!" onclick="javascript:toggleFullScreen()">
+                        <i class="ti-fullscreen"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="user-profile header-notification">
+                    <a href="#!">
+                        <img src="{% static 'images/avatar-4.jpg' %}" class="img-radius" alt="User-Profile-Image">
+                        <span>{{ user.get_short_name }}</span>
+                        <i class="ti-angle-down"></i>
+                    </a>
+                    <ul class="show-notification profile-notification">
+                        <li>
+                            <a href="{% url 'suite:edit_profile' %}">
+                                <i class="ti-user"></i> Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'suite:loggedout' %}">
+                                <i class="ti-layout-sidebar-left"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
-
-
-<script type="text/javascript">
-        document.getElementById("nav-toggle-main").addEventListener ("click", toggleNavMain);
-        function toggleNavMain() {
-                var nav = document.getElementById("nav-menu-main");
-                var className = nav.getAttribute("class");
-                if(className == "nav-right nav-menu") {
-                    nav.className = "nav-right nav-menu is-active";
-                } else {
-                    nav.className = "nav-right nav-menu";
-                }
-        }
-</script>

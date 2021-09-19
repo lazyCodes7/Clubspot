@@ -79,3 +79,10 @@ body {
 .nav-right {
     padding: 0 10.5px 0 0;
 }
+
+.clear-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}

@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="pcoded-navbar">
+    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="">
+            <div class="main-menu-header">
+                <img class="img-40 img-radius" src="{% static 'images/avatar-4.jpg' %}"
+                     alt="User-Profile-Image">
+                <div class="user-details">
+                    <span>{{ user.get_short_name }}</span>
+                    <span id="more-details" style="text-transform: none">{{ user.email }}<i class="ti-angle-down"></i></span>
+                </div>
+            </div>
+
+            <div class="main-menu-content">
+                <ul>
+                    <li class="more-details">
+                        <a href="{% url 'suite:edit_profile' %}"><i class="ti-user"></i>View Profile</a>
+                        <a href="{% url 'suite:loggedout' %}"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <form class="pcoded-search" action="{% url 'suite:club_search' %}">
+            <span class="searchbar-toggle">  </span>
+            <div class="pcoded-search-box ">
+                <input type="text" placeholder="Search" name="q">
+                <button type="submit" class="search-icon clear-button"><i class="ti-search" aria-hidden="true"></i></button>
+            </div>
+        </form>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="active">
+                <a href="{% url 'suite:dashboard' %}">
+                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'suite:club_create' %}">
+                    <span class="pcoded-micon"><i class="ti-plus"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Create Club</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'suite:club_manage' %}">
+                    <span class="pcoded-micon"><i class="ti-settings"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Manage Clubs</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
