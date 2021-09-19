@@ -6,3 +6,4 @@ from .mdl_budget import *
 from .mdl_division import *
 from .mdl_eventsignin import *
 from .mdl_joinrequest import *
+from .mdl_activity import *

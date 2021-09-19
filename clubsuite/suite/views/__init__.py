@@ -16,3 +16,4 @@ from .view_budget import *
 from .view_club_edit import *
 from .view_event_edit import *
 from .view_csv_upload import *
+from .view_activity import *

@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^club/(?P<club_id>[0-9]+)/edit$', views.ClubEdit.as_view(), name='club_edit'),
     url(r'^club/(?P<club_id>[0-9]+)/event/(?P<event_id>[0-9]+)/edit$', views.EventEdit.as_view(), name='event_edit'),
     url(r'^club/(?P<club_id>[0-9]+)/budget$', views.Budget.as_view(), name='budget'),
+    url(r'^club/(?P<club_id>[0-9]+)/activity', views.Activity.as_view(), name='activity'),
     url(r'^account', views.Account.as_view(), name='edit_profile'),
     url(r'^admin/', admin.site.urls),
 

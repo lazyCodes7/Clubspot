@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load guardian_tags %}
+
+{% block body_block %}
+
+{% get_obj_perms request.user for club as "club_perms" %}
+<section class='section'>
+  <div class='container'>
+      {% include 'club_bar.html' with club=club club_id=club.id user=request.user%}
+     
+    <div class='container'>
+        <br>
+        <h1> {{ club.club_name }} </h1>
+        <br>
+        <h3>Activities</h3>
+        {% for i in links %}
+            <h4>{{ i }}</h4>
+        {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock body_block %}
