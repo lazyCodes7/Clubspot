@@ -49,6 +49,7 @@
       {% if "can_create_event" in club_perms %}
       <a class="nav-item is-tab is-hidden-tablet" href="{% url 'suite:event_create' club_id %}"> Create Event</a>
       <a class="nav-item is-tab is-hidden-tablet" href="{% url 'suite:csv_upload' club_id %}">Upload Attendance</a>
+      <a class="nav-item is-tab is-hidden-tablet" href="{% url 'suite:behaviour' club_id %}">Behaviour</a>
       {% endif %}
       
       <a class="nav-item is-tab is-hidden-tablet" href="{% url 'suite:activity' club_id %}">Activities</a>

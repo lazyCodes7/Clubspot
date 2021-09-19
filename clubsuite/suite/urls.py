@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^club/(?P<club_id>[0-9]+)/roster$', views.ClubRoster.as_view(), name='club_roster'),
     url(r'^club/(?P<club_id>[0-9]+)/$', views.ClubView.as_view(), name='club_view'),
     url(r'^club/(?P<club_id>[0-9]+)/csv_upload', views.CSVUpload.as_view(), name='csv_upload'),
+    url(r'^club/(?P<club_id>[0-9]+)/behaviour', views.Behaviour.as_view(), name='behaviour'),
     url(r'^club/(?P<club_id>[0-9]+)/join$', views.ClubJoin.as_view(), name='club_join'),
     url(r'^club/(?P<club_id>[0-9]+)/emails$', views.ClubEmails.as_view(), name='club_emails'),
     url(r'^club/(?P<club_id>[0-9]+)/join/handle_requests$', views.HandleJoinRequest.as_view(), name='handle_join_request'),
