@@ -89,19 +89,17 @@ Make sure to have virtualenv package from python installed before proceeding to 
   python manage.py runserver
 
   ```
-## Usage
-1. Clubspot provides you with the ability to join, create or search existing clubs
-![Screenshot from 2021-09-19 19-21-38](https://user-images.githubusercontent.com/53506835/133930093-c19af1b7-947b-4ec7-816e-3e2473b67ed5.png)
 
-2. On Clubspot it is possible to find activites of your choice once you join the club. Either an admin suggests them for you or we suggest it:)
-![Screenshot from 2021-09-19 19-37-08](https://user-images.githubusercontent.com/53506835/133930530-d9e5552d-eaaf-4774-8dbe-050231823661.png)
+## Features
+### Member
+- Join, create or search exisiting clubs
+- Find activities of your choice
+- Submit feedback for your club
 
-3. As a club admin we provide data analytics services which helps you in analyzing your attendance data which is collecting dust:) \
-![2021-09-19_19-25-25](https://user-images.githubusercontent.com/53506835/133931088-fd551a65-5296-4f9a-95f7-a4fe48a04c12.gif)
+### Admin
+- Analytical services for club admins to analyze club attendance
+- Analytical services for club admins to analyze feedbacks
 
-
-
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -119,3 +117,9 @@ Contributions are what make the open source community such an amazing place to b
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+
+## Samples
+![Screenshot from 2021-09-19 19-21-38](https://user-images.githubusercontent.com/53506835/133930093-c19af1b7-947b-4ec7-816e-3e2473b67ed5.png)
+![Screenshot from 2021-09-19 19-21-38](https://user-images.githubusercontent.com/53506835/133930093-c19af1b7-947b-4ec7-816e-3e2473b67ed5.png)
+![2021-09-19_19-25-25](https://user-images.githubusercontent.com/53506835/133931088-fd551a65-5296-4f9a-95f7-a4fe48a04c12.gif)
+<!-- CONTRIBUTING -->
