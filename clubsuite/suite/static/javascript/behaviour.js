@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "https://attendanceai.herokuapp.com/behaviour",
+            url: "https://attendanceai.herokuapp.com/feedback",
             data: data,
             processData: false,
             contentType: false,
