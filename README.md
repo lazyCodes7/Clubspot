@@ -96,7 +96,7 @@ Make sure to have virtualenv package from python installed before proceeding to 
 2. On Clubspot it is possible to find activites of your choice once you join the club. Either an admin suggests them for you or we suggest it:)
 ![Screenshot from 2021-09-19 19-37-08](https://user-images.githubusercontent.com/53506835/133930530-d9e5552d-eaaf-4774-8dbe-050231823661.png)
 
-3. As a club admin we provide data analytics services which helps you in analyzing your attendance data which is collecting dust:) 
+3. As a club admin we provide data analytics services which helps you in analyzing your attendance data which is collecting dust:) \
 ![2021-09-19_19-25-25](https://user-images.githubusercontent.com/53506835/133931088-fd551a65-5296-4f9a-95f7-a4fe48a04c12.gif)
 
 
