@@ -14,6 +14,7 @@
         {% if "can_create_event" in club_perms %}
         <a class="nav-item is-tab is-hidden-mobile" href="{% url 'suite:event_create' club_id %}">Create an Event</a>
             <a class="nav-item is-tab is-hidden-mobile" href="{% url 'suite:csv_upload' club_id %}">Upload Attendance</a>
+            <a class="nav-item is-tab is-hidden-mobile" href="{% url 'suite:behaviour' club_id %}">Behaviour</a>
         {% endif %}
         <a class="nav-item is-tab is-hidden-mobile" href="{% url 'suite:club_roster' club_id %}">Club Roster</a>  
         {% if "can_view_account_info" in club_perms %}
