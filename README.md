@@ -118,8 +118,6 @@ Contributions are what make the open source community such an amazing place to b
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-## Samples
-![Screenshot from 2021-09-19 19-21-38](https://user-images.githubusercontent.com/53506835/133930093-c19af1b7-947b-4ec7-816e-3e2473b67ed5.png)
-![Screenshot from 2021-09-19 19-21-38](https://user-images.githubusercontent.com/53506835/133930093-c19af1b7-947b-4ec7-816e-3e2473b67ed5.png)
+## A Sample
 ![2021-09-19_19-25-25](https://user-images.githubusercontent.com/53506835/133931088-fd551a65-5296-4f9a-95f7-a4fe48a04c12.gif)
 <!-- CONTRIBUTING -->
