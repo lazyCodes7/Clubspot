@@ -11,8 +11,6 @@ from guardian.shortcuts import get_perms
 from django.core.exceptions import PermissionDenied
 
 #importing the libraries we will need
-import pandas as pd
-import numpy as np
 import urllib
 from fake_useragent import UserAgent
 import requests

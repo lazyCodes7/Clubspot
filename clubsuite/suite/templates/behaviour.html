@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load guardian_tags %}
+
+{% block body_block %}
+
+    {% get_obj_perms request.user for club as "club_perms" %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <section class='section'>
+        <div class='container'>
+            {% include 'club_bar.html' with club=club club_id=club.id user=request.user %}
+
+
+            <h1>Behaviour Upload</h1>
+            <form id="my_form" action="#">
+                <div>
+                    <label for="file"> Upload attendance csv file</label>
+                    <input type="file" id="csv_file" name="file">
+                </div>
+                <div>
+                    <small>Only accepts CSV files</small>
+                    <button id="btnSubmit">Upload</button>
+                </div>
+            </form>
+            <div id="attendance_dist_graph"></div>
+            <div id="attendance_graph"></div>
+            <div id="attendance_scatter_graph"></div>
+            <div id="day_dist_graph"></div>
+            <script src="{% static "javascript/behaviour.js" %}"></script>
+        </div>
+    </section>
+{% endblock body_block %}
