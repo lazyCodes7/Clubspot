@@ -3,45 +3,54 @@
 
 {% block body_block %}
 
-<section class='section'>
-  <div class='container'>
-    {% if clubs %}
-    <p>Here is a listing of clubs you are a part of! Click on the name of a club to navigate to that club's home page. As always, you can search for more clubs to join under "Club Search" and start your own club under "Create Club"</p>
-    {% for message in messages %}
-    <div class="notification is-success">
-      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-    </div>
-    {% endfor %}
-    <div class="columns">
-      <div class='column is-half'>
+    <section>
+        <div class='container'>
+            {% if clubs %}
+                <p>Here is a listing of clubs you are a part of! Click on the name of a club to navigate to that club's
+                    home page. As always, you can search for more clubs to join under "Club Search" and start your own
+                    club under "Create Club"</p>
+                {% for message in messages %}
+                    <div class="notification is-success">
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    </div>
+                {% endfor %}
+                <div class="columns">
+                    <div class='column is-half'>
 
-        {% for club in clubs %}
-        {% if not forloop.counter|divisibleby:"2" %}
-        <div class="box">
-          <a href="{% url 'suite:club_view' club.id %}">{{ club.club_name }}</a> {{club.get_owner_group}}
-          <img src="{{club.image.cropped.url}}" />
-          <p>{{club.summary}}</p>
-        </div>
-        {% endif %}
-        {% endfor%}
-      </div>
-      <div class="column is-half">
-        {% for club in clubs %}
-        {% if forloop.counter|divisibleby:"2" %}
-        <div class="box">
-          <a href="{% url 'suite:club_view' club.id %}">{{ club.club_name }} {{club.get_owner_group_name}}</a>
-          <img src="{{club.image.cropped.url}}" />
-          <p>{{club.summary}}</p>
-        </div>
-        {% endif %}
-        {% endfor%}
-      </div>
-    </div>
-    {% else %}
-    <p>You are not yet registered as a member for any clubs! Go to "Club Search" to join the club! Don't see a club you like? Go to "Create Club" to start your own!</p>
-    {% endif %}
+                        {% for club in clubs %}
+                            {% if not forloop.counter|divisibleby:"2" %}
+                                <div class="box p-0" style="overflow: hidden;">
+                                    <img src="{{ club.image.cropped.url }}"/>
+                                    <div class="px-4 py-3">
+                                        <a href="{% url 'suite:club_view' club.id %}"
+                                           style="font-size: 24px; font-weight: 600;">{{ club.club_name }}</a> {{ club.get_owner_group }}
+                                        <p class="mt-2">{{ club.summary }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="column is-half">
+                        {% for club in clubs %}
+                            {% if forloop.counter|divisibleby:"2" %}
+                                <div class="box p-0" style="overflow: hidden;">
+                                    <img src="{{ club.image.cropped.url }}"/>
+                                    <div class="px-4 py-3">
+                                        <a href="{% url 'suite:club_view' club.id %}"
+                                           style="font-size: 24px; font-weight: 600;">{{ club.club_name }} {{ club.get_owner_group_name }}</a>
+                                        <p>{{ club.summary }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <p>You are not yet registered as a member for any clubs! Go to "Club Search" to join the club! Don't see
+                    a club you like? Go to "Create Club" to start your own!</p>
+            {% endif %}
 
-  </div>
-</section>
+        </div>
+    </section>
 
 {% endblock body_block %}

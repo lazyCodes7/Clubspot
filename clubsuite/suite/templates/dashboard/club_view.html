@@ -5,168 +5,181 @@
 
 {% block body_block %}
 
-{% get_obj_perms request.user for club as "club_perms" %}
-<section class='section'>
-  <div class='container'>
-      {% include 'club_bar.html' with club=club club_id=club.id user=request.user%}
-      <script src="{% static "javascript/club_view.js" %}"></script>
-    <br />
+    {% get_obj_perms request.user for club as "club_perms" %}
+    <section class='section'>
+        <div class='container'>
+            {% include 'club_bar.html' with club=club club_id=club.id user=request.user %}
+            <script src="{% static "javascript/club_view.js" %}"></script>
+            <br/>
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-4by1">
-                        <img src="{{club.image.cropped.url}}" alt="Image">
+                        <img src="{{ club.image.cropped.url }}" alt="Image">
                     </figure>
                 </div>
-                  {% if "can_handle_join_requests" in club_perms %}
-                <br />
-                  &nbsp   &nbsp <span class="tag is-danger is-medium"> {{reqs.count}} Join Requests</span>
-                  {% endif %}
-                <div class="card-content">
-                    <div class="media">
+                {% if "can_handle_join_requests" in club_perms %}
+                    <span class="tag is-danger is-medium ml-4" style="width: fit-content"> {{ reqs.count }} Join Requests</span>
+                {% endif %}
+                <div class="card-content d-flex flex-column">
+                    <div class="media mb-3">
                         <div class="media-left">
                             <figure class="image" style="height: 40px; width: 40px;">
-                              <img src="{% static 'media/public.png' %}" alt="Image">
+                                <img src="{% static 'media/public.png' %}" alt="Image">
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">{{club.club_name}}</p>
+                            <p class="title is-4">{{ club.club_name }}</p>
                             <p class="subtitle is-6">University of California, San Diego</p>
-
                         </div>
                     </div>
-
+                    {{ club.summary }}
                 </div>
-        <div class="column">
-            <blockquote>{{ club.summary}}</blockquote>
-        </div>
-  </div>
-<br />
-
-{% if messages  %}
-      {% for message in messages %}
-      {% ifequal message.tags 'info' %}
-      <div class="notification is-info">
-        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-      </div>
-      {% endifequal %}
-
-      {% endfor %}
-{% endif %}
-
-    <p> <h2> New Events  </h2></p>
-    {% if messages %}
-          {% for message in messages %}
-          {% ifequal message.tags 'success' %}
-          <div class="notification is-success">
-            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-          </div>
-          {% endifequal %}
-
-          {% endfor %}
-    {% endif %}
-
-    {% for event in events %}
-
-   <div class="column is-8">
-        <div class="box">
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-128x128">
-                <br />
-                  <img src="{{event.image.cropped.url}}" alt="Image">
-              </figure>
             </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <h3>
-                    <a href="{% url 'suite:event' club_id=club.id event_id=event.id %}">{{event.event_name}}</a>
-                    {% if event.accessibility != True %}
-                      <span class="tag is-warning">Members Only</span>
-                    {% endif %}
-                    {% if event.required == True %}
-                      <span class="tag is-dark">Event Required</span>
-                    {% endif %}
+            <br/>
 
-                    {% if "can_create_event" in club_perms %}
-                    <span><a class='button is-link' href="{% url 'suite:event_edit' club_id=club.id event_id=event.id %}">Edit</a></span>
-                    <span>
-                      <a class="button is-link modal-button" data-target="#delete-toggle-{{event.id}}">Delete</a>
-                    </span>
-                      <div class="modal" id="delete-toggle-{{event.id}}">
-                        <div class="modal-background"></div>
-                        <div class="modal-content">
-                            <div class='notification is-danger'>
-                              You are about to delete your event. Proceed?
-                              <form method="POST" action="{% url 'suite:club_view' club_id=club.id %}">
-                                   {% csrf_token %}
-                                   <input type='hidden' name='event_id' value='{{ event.id }}'>
-                                   <div class="columns">
-                                        <div class="column is-offset-10">
-                                        <button class="button" type="submit"formaction="{% url 'suite:club_view' club_id=club.id %}" name='delete' value='Delete' style="text-align:right">
-                                             Delete
-                                        </button>
-                                        </div>
-                                   </div>
-
-                             </form>
-                            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    {% ifequal message.tags 'info' %}
+                        <div class="notification is-info">
+                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                         </div>
-                        <button class="modal-close"></button>
-                      </div>
-                    {% endif %}
-                    
-                  </h3>
-                </p>
+                    {% endifequal %}
 
-                  <p> {% if event.start_date != event.end_date %}{{event.start_date}} ({{event.start_time}}) - {{event.end_date}} ({{event.end_time}}){% endif %}
-                      {% if event.start_date == event.end_date %}{{event.start_date}} : {{event.start_time}} - {{event.end_time}} {% endif %}
-                  </p>
-                  <p><h5 class="subtitle">{% if event.event_cost == 0 %} (FREE) {% endif %}</h5>
-                    {% if event.event_fee != 0 %} (${{event.event_fee}} Event Fee) {% endif %}</p>
-                  <p>Description: {{event.event_description}}</p>
-                  <br />
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    {% endfor %}
+                {% endfor %}
+            {% endif %}
 
-    {% if signedInEvents %}
-      <p> <h2> Attended Events  </h2></p>
-      {% for signedInEvent in signedInEvents %}
+            <p>
+            <h2> New Events </h2></p>
+            {% if messages %}
+                {% for message in messages %}
+                    {% ifequal message.tags 'success' %}
+                        <div class="notification is-success">
+                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        </div>
+                    {% endifequal %}
 
-     <div class="column is-8">
-          <div class="box">
-            <article class="media">
-              <div class="media-left">
-                <figure class="image is-128x128">
-                  <br />
-                    <img src="{{signedInEvent.image.cropped.url}}" alt="Image">
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content">
-                    <p> <h3><a href="{% url 'suite:event' club_id=club.id event_id=signedInEvent.id %}">{{signedInEvent.event_name}}</a>
-                        {% if event.accessibility != True %}<span class="tag is-warning">Members Only</span>  {% endif %}
-                        {% if event.required == True %}<span class="tag is-dark">Event Required</span>  {% endif %}</h3></p>
+                {% endfor %}
+            {% endif %}
 
-                    <p> {% if signedInEvent.start_date != signedInEvent.end_date %}{{signedInEvent.start_date}} ({{signedInEvent.start_time}}) - {{signedInEvent.end_date}} ({{signedInEvent.end_time}}){% endif %}
-                        {% if signedInEvent.start_date == signedInEvent.end_date %}{{signedInEvent.start_date}} : {{signedInEvent.start_time}} - {{signedInEvent.end_time}} {% endif %}
-                    </p>
-                    <p><h5 class="subtitle">{% if signedInEvent.event_cost == 0 %} (FREE) {% endif %}</h5>
-                      {% if signedInEvent.event_fee != 0 %} (${{signedInEvent.event_fee}} Event Fee) {% endif %}</p>
-                    <p>Description: {{signedInEvent.event_description}}</p>
-                    <br />
+            {% for event in events %}
+
+                <div class="column is-8">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-128x128">
+                                    <br/>
+                                    <img src="{{ event.image.cropped.url }}" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                    <h3>
+                                        <a href="{% url 'suite:event' club_id=club.id event_id=event.id %}">{{ event.event_name }}</a>
+                                        {% if event.accessibility != True %}
+                                            <span class="tag is-warning">Members Only</span>
+                                        {% endif %}
+                                        {% if event.required == True %}
+                                            <span class="tag is-dark">Event Required</span>
+                                        {% endif %}
+
+                                        {% if "can_create_event" in club_perms %}
+                                            <span><a class='button is-link'
+                                                     href="{% url 'suite:event_edit' club_id=club.id event_id=event.id %}">Edit</a></span>
+                                            <span>
+                      <a class="button is-link modal-button" data-target="#delete-toggle-{{ event.id }}">Delete</a>
+                    </span>
+                                            <div class="modal" id="delete-toggle-{{ event.id }}">
+                                                <div class="modal-background"></div>
+                                                <div class="modal-content">
+                                                    <div class='notification is-danger'>
+                                                        You are about to delete your event. Proceed?
+                                                        <form method="POST"
+                                                              action="{% url 'suite:club_view' club_id=club.id %}">
+                                                            {% csrf_token %}
+                                                            <input type='hidden' name='event_id' value='{{ event.id }}'>
+                                                            <div class="columns">
+                                                                <div class="column is-offset-10">
+                                                                    <button class="button" type="submit"
+                                                                            formaction="{% url 'suite:club_view' club_id=club.id %}"
+                                                                            name='delete' value='Delete'
+                                                                            style="text-align:right">
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <button class="modal-close"></button>
+                                            </div>
+                                        {% endif %}
+
+                                    </h3>
+                                    </p>
+
+                                    <p>{% if event.start_date != event.end_date %}{{ event.start_date }} (
+                                        {{ event.start_time }}) - {{ event.end_date }} ({{ event.end_time }}){% endif %}
+                                        {% if event.start_date == event.end_date %}{{ event.start_date }} :
+                                            {{ event.start_time }} - {{ event.end_time }} {% endif %}
+                                    </p>
+                                    <p><h5 class="subtitle">{% if event.event_cost == 0 %} (FREE) {% endif %}</h5>
+                                    {% if event.event_fee != 0 %} (${{ event.event_fee }} Event Fee) {% endif %}</p>
+                                    <p>Description: {{ event.event_description }}</p>
+                                    <br/>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-              </div>
-            </article>
-          </div>
+            {% endfor %}
+
+            {% if signedInEvents %}
+                <p> <h2> Attended Events </h2></p>
+                {% for signedInEvent in signedInEvents %}
+
+                    <div class="column is-8">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-128x128">
+                                        <br/>
+                                        <img src="{{ signedInEvent.image.cropped.url }}" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                        <h3>
+                                            <a href="{% url 'suite:event' club_id=club.id event_id=signedInEvent.id %}">{{ signedInEvent.event_name }}</a>
+                                            {% if event.accessibility != True %}
+                                                <span class="tag is-warning">Members Only</span>  {% endif %}
+                                            {% if event.required == True %}
+                                                <span class="tag is-dark">Event Required</span>  {% endif %}</h3></p>
+
+                                        <p>{% if signedInEvent.start_date != signedInEvent.end_date %}
+                                            {{ signedInEvent.start_date }} ({{ signedInEvent.start_time }}) -
+                                            {{ signedInEvent.end_date }} ({{ signedInEvent.end_time }}){% endif %}
+                                            {% if signedInEvent.start_date == signedInEvent.end_date %}
+                                                {{ signedInEvent.start_date }} : {{ signedInEvent.start_time }} -
+                                                {{ signedInEvent.end_time }} {% endif %}
+                                        </p>
+                                        <p><h5 class="subtitle">{% if signedInEvent.event_cost == 0 %}
+                                        (FREE) {% endif %}</h5>
+                                        {% if signedInEvent.event_fee != 0 %} (${{ signedInEvent.event_fee }} Event
+                                            Fee) {% endif %}</p>
+                                        <p>Description: {{ signedInEvent.event_description }}</p>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
-      {% endfor %}
-    {% endif %}
-  </div>
-</section>
+    </section>
 
 {% endblock body_block %}

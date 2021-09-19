@@ -21,10 +21,10 @@
                 </ul>
             </div>
         </div>
-        <form class="pcoded-search" action="{% url 'suite:club_search' %}">
+        <form class="pcoded-search" action="{% url 'suite:club_search' %}" method="post">
             <span class="searchbar-toggle">  </span>
             <div class="pcoded-search-box ">
-                <input type="text" placeholder="Search" name="q">
+                <input type="text" placeholder="Search" name="keyword">
                 <button type="submit" class="search-icon clear-button"><i class="ti-search" aria-hidden="true"></i></button>
             </div>
         </form>
