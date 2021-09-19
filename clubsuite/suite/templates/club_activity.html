@@ -16,7 +16,9 @@
         <br>
         <h3>Activities</h3>
         {% for i in links %}
-            <h4>{{ i }}</h4>
+        <div>
+            <a href="{{ i }}">{{ i }}</a>
+        </div>
         {% endfor %}
     </div>
   </div>
